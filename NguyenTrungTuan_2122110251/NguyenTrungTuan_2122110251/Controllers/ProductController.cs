@@ -13,5 +13,14 @@ namespace NguyenTrungTuan_2122110251.Controllers
         {
             return View();
         }
+        public ActionResult ListingGrid()
+        {
+            return View();
+        }
+        public ActionResult ListingList()
+        {
+            return View();
+        }
+
     }
 }

@@ -28,7 +28,9 @@
                 <div class="row align-items-center">
                     <div class="col-xl-2 col-lg-3 col-md-12">
                         <a href="http://bootstrap-ecommerce.com" class="brand-wrap">
-                            <img class="logo" src="~/content/images/logo.png">
+                            <a href="@Url.Action("Index", "Home")" class="btn btn-link">
+                                <img class="logo" src="~/Content/images/logo.png">
+                            </a>
                         </a> <!-- brand-wrap.// -->
                     </div>
                     <div class="col-xl-6 col-lg-5 col-md-6">
@@ -53,7 +55,7 @@
                     <div class="col-xl-4 col-lg-4 col-md-6">
                         <div class="widgets-wrap float-md-right">
                             <div class="widget-header mr-3">
-                                <a href="#" class="widget-view">
+                                <a href="@Url.Action("Login", "User")" class="widget-view">
                                     <div class="icon-area">
                                         <i class="fa fa-user"></i>
                                         <span class="notify">3</span>
@@ -79,7 +81,7 @@
                                 </a>
                             </div>
                             <div class="widget-header">
-                                <a href="#" class="widget-view">
+                                <a href="@Url.Action("ShoppingCart", "ShoppingCart")" class="widget-view">
                                     <div class="icon-area">
                                         <i class="fa fa-shopping-cart"></i>
                                     </div>
@@ -130,15 +132,15 @@
                             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Demo pages</a>
                             <div class="dropdown-menu">
                                 <a class="dropdown-item" href="page-index.html">Main</a>
-                                <a class="dropdown-item" href="page-category.html">All category</a>
-                                <a class="dropdown-item" href="page-listing-large.html">Listing list</a>
-                                <a class="dropdown-item" href="page-listing-grid.html">Listing grid</a>
-                                <a class="dropdown-item" href="page-shopping-cart.html">Shopping cart</a>
-                                <a class="dropdown-item" href="page-detail-product.html">Item detail</a>
-                                <a class="dropdown-item" href="page-content.html">Info content</a>
-                                <a class="dropdown-item" href="page-user-login.html">Page login</a>
-                                <a class="dropdown-item" href="page-user-register.html">Page register</a>
-                                <a class="dropdown-item disabled text-muted" href="#">More components</a>
+                                <a class="dropdown-item" href="@Url.Action("Category", "Category", new {},null)">All category</a>
+                                <a class="dropdown-item" href="@Url.Action("ListingList", "Product", new {},null)">Listing list</a>
+                                <a class="dropdown-item" href="@Url.Action("ListingGrid", "Product", new {},null)">Listing grid</a>
+                                <a class="dropdown-item" href="@Url.Action("ShoppingCart", "ShoppingCart", new {},null)">Shopping cart</a>
+                                <a class="dropdown-item" href="@Url.Action("Detail", "Product", new {},null)">Item detail</a>
+                                <a class="dropdown-item" href="@Url.Action("Content", "Home", new {},null)">Content</a>
+                                <a class="dropdown-item" href="@Url.Action("Login", "User", new {},null)">Login</a>
+                                <a class="dropdown-item" href="@Url.Action("Register", "User", new {},null)">Register</a>
+                                <a class="dropdown-item" href="@Url.Action("Component", "Home", new {},null)">More components</a>
                             </div>
                         </li>
                     </ul>

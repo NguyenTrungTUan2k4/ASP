@@ -12,7 +12,14 @@ namespace NguyenTrungTuan_2122110251.Controllers
         {
             return View();
         }
+        public ActionResult Content()
+        {
+            return View();
+        }
+        public ActionResult Component()
+        {
+            return View();
+        }
 
-       
     }
 }
