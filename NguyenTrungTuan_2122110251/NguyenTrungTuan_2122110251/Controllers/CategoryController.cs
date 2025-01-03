@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NguyenTrungTuan_2122110251.Context;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,10 +9,13 @@ namespace NguyenTrungTuan_2122110251.Controllers
 {
     public class CategoryController : Controller
     {
+        QLSPEntities objcsdlspEntities = new QLSPEntities();
+
         // GET: Category
         public ActionResult Category()
         {
-            return View();
+            var lstCategory=objcsdlspEntities.Categories.ToList();
+            return View(lstCategory);
         }
     }
 }

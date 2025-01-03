@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NguyenTrungTuan_2122110251.Context;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,9 +10,12 @@ namespace NguyenTrungTuan_2122110251.Controllers
     public class ProductController : Controller
     {
         // GET: Product
-        public ActionResult Detail()
+        QLSPEntities objcsdlspEntities = new QLSPEntities();
+
+        public ActionResult Detail(int Id)
         {
-            return View();
+            var objProduct=objcsdlspEntities.Products.Where(n=>n.Id==Id).FirstOrDefault();
+            return View(objProduct);
         }
         public ActionResult ListingGrid()
         {

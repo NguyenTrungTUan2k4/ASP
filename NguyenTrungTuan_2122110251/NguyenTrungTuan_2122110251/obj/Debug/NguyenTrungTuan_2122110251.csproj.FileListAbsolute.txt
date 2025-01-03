@@ -77,3 +77,7 @@ C:\asp\NguyenTrungTuan_2122110251\NguyenTrungTuan_2122110251\obj\Debug\NguyenTru
 C:\asp\NguyenTrungTuan_2122110251\NguyenTrungTuan_2122110251\obj\Debug\NguyenTrungTuan_2122110251.csproj.CopyComplete
 C:\asp\NguyenTrungTuan_2122110251\NguyenTrungTuan_2122110251\obj\Debug\NguyenTrungTuan_2122110251.dll
 C:\asp\NguyenTrungTuan_2122110251\NguyenTrungTuan_2122110251\obj\Debug\NguyenTrungTuan_2122110251.pdb
+C:\asp\NguyenTrungTuan_2122110251\NguyenTrungTuan_2122110251\bin\EntityFramework.dll
+C:\asp\NguyenTrungTuan_2122110251\NguyenTrungTuan_2122110251\bin\EntityFramework.SqlServer.dll
+C:\asp\NguyenTrungTuan_2122110251\NguyenTrungTuan_2122110251\bin\EntityFramework.xml
+C:\asp\NguyenTrungTuan_2122110251\NguyenTrungTuan_2122110251\bin\EntityFramework.SqlServer.xml

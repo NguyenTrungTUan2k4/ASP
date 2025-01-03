@@ -131,7 +131,7 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Demo pages</a>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="page-index.html">Main</a>
+                                <a class="dropdown-item" href="@Url.Action("Index", "Home",new { },null)">Main</a>
                                 <a class="dropdown-item" href="@Url.Action("Category", "Category", new {},null)">All category</a>
                                 <a class="dropdown-item" href="@Url.Action("ListingList", "Product", new {},null)">Listing list</a>
                                 <a class="dropdown-item" href="@Url.Action("ListingGrid", "Product", new {},null)">Listing grid</a>
@@ -139,7 +139,7 @@
                                 <a class="dropdown-item" href="@Url.Action("Detail", "Product", new {},null)">Item detail</a>
                                 <a class="dropdown-item" href="@Url.Action("Content", "Home", new {},null)">Content</a>
                                 <a class="dropdown-item" href="@Url.Action("Login", "User", new {},null)">Login</a>
-                                <a class="dropdown-item" href="@Url.Action("Register", "User", new {},null)">Register</a>
+                                <a class="dropdown-item" href="@Url.Action("Register", "Home", new {},null)">Register</a>
                                 <a class="dropdown-item" href="@Url.Action("Component", "Home", new {},null)">More components</a>
                             </div>
                         </li>
