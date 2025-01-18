@@ -13,10 +13,10 @@ namespace NguyenTrungTuan_2122110251.Context
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class QLSPEntities : DbContext
+    public partial class WebASPEntities : DbContext
     {
-        public QLSPEntities()
-            : base("name=QLSPEntities")
+        public WebASPEntities()
+            : base("name=WebASPEntities")
         {
         }
     
@@ -28,6 +28,7 @@ namespace NguyenTrungTuan_2122110251.Context
         public virtual DbSet<Brand> Brands { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
+        public virtual DbSet<OrderDetail> OrderDetails { get; set; }
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<User> Users { get; set; }
     }

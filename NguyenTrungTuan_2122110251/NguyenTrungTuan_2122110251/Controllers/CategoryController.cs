@@ -9,13 +9,17 @@ namespace NguyenTrungTuan_2122110251.Controllers
 {
     public class CategoryController : Controller
     {
-        QLSPEntities objcsdlspEntities = new QLSPEntities();
-
+        WebASPEntities db = new WebASPEntities();
         // GET: Category
         public ActionResult Category()
         {
-            var lstCategory=objcsdlspEntities.Categories.ToList();
-            return View(lstCategory);
+            var listCategory = db.Categories.ToList();
+            return View(listCategory);
+        }
+        public ActionResult ProductCategory(int Id)
+        {
+            var listProduct = db.Products.Where(n => n.CategoryId == Id).ToList();
+            return View(listProduct);
         }
     }
 }

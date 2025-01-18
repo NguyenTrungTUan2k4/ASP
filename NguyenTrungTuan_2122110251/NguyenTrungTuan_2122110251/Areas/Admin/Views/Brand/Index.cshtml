@@ -1,0 +1,148 @@
+﻿@model IEnumerable<NguyenTrungTuan_2122110251.Context.Brand>
+
+@{
+    ViewBag.Title = "Quản lý thương hiệu";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    /* General table styling */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+        font-size: 15px;
+        text-align: left;
+        background-color: #ffffff;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    th {
+        background-color: #007bff;
+        color: white;
+        padding: 12px;
+        text-align: center;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    td {
+        padding: 12px;
+        border-bottom: 1px solid #ddd;
+        text-align: center;
+        color: #555;
+    }
+
+    /* Row striping */
+    tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+    tr:hover {
+        background-color: #f1f1f1;
+        cursor: pointer;
+    }
+
+    /* Image styling */
+    td img {
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        padding: 4px;
+        max-width: 100px;
+        max-height: 50px;
+    }
+
+    /* Action buttons styling */
+    a {
+        color: #007bff;
+        text-decoration: none;
+        font-weight: 500;
+        padding: 6px 10px;
+        border: 1px solid #007bff;
+        border-radius: 4px;
+        transition: all 0.3s ease-in-out;
+    }
+
+        a:hover {
+            background-color: #007bff;
+            color: white;
+        }
+
+    /* Title styling */
+    h2 {
+        font-size: 22px;
+        color: #333;
+        margin-bottom: 20px;
+        font-weight: 600;
+    }
+
+    /* Create button styling */
+    p > a {
+        color: white;
+        background-color: #007bff;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 4px;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 500;
+        transition: background-color 0.3s ease-in-out;
+    }
+
+        p > a:hover {
+            background-color: #0056b3;
+        }
+</style>
+
+
+<h2>Quản lý thương hiệu</h2>
+
+<p>
+    @Html.ActionLink("Thêm thương hiệu", "Create", null, new { @class = "btn btn-primary" })
+</p>
+
+<table class="table">
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.FirstOrDefault().Name)</th>
+        <th>@Html.DisplayNameFor(model => model.FirstOrDefault().Avartar)</th>
+        <th>@Html.DisplayNameFor(model => model.FirstOrDefault().Slug)</th>
+        <th>@Html.DisplayNameFor(model => model.FirstOrDefault().ShowOnHomePage)</th>
+        <th>@Html.DisplayNameFor(model => model.FirstOrDefault().DisplayOrder)</th>
+        @*<th>@Html.DisplayNameFor(model => model.FirstOrDefault().CreatedOnUtc)</th>
+            <th>@Html.DisplayNameFor(model => model.FirstOrDefault().UpdatedOnUtc)</th>
+            <th>@Html.DisplayNameFor(model => model.FirstOrDefault().Deleted)</th>*@
+        <th>Hành động</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.Name)</td>
+            <td>
+                @if (!string.IsNullOrEmpty(item.Avartar))
+                {
+                    <img src="@Url.Content("~/Content/images/brand/" + item.Avartar)" alt="Brand Image" style="max-width: 100px; max-height: 50px;" />
+                }
+                else
+                {
+                    <span>Không có ảnh</span>
+                }
+            </td>
+            <td>@Html.DisplayFor(modelItem => item.Slug)</td>
+            <td>@Html.DisplayFor(modelItem => item.ShowOnHomePage)</td>
+            <td>@Html.DisplayFor(modelItem => item.DisplayOrder)</td>
+            @*<td>@Html.DisplayFor(modelItem => item.CreatedOnUtc)</td>
+                <td>@Html.DisplayFor(modelItem => item.UpdatedOnUtc)</td>
+                <td>@Html.DisplayFor(modelItem => item.Deleted)</td>*@
+            <td>
+                @Html.ActionLink("Sửa", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Chi tiết", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Xóa", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+</table>

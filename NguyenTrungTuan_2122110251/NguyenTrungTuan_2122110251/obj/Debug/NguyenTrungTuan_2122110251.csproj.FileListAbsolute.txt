@@ -81,3 +81,7 @@ C:\asp\NguyenTrungTuan_2122110251\NguyenTrungTuan_2122110251\bin\EntityFramework
 C:\asp\NguyenTrungTuan_2122110251\NguyenTrungTuan_2122110251\bin\EntityFramework.SqlServer.dll
 C:\asp\NguyenTrungTuan_2122110251\NguyenTrungTuan_2122110251\bin\EntityFramework.xml
 C:\asp\NguyenTrungTuan_2122110251\NguyenTrungTuan_2122110251\bin\EntityFramework.SqlServer.xml
+C:\asp\NguyenTrungTuan_2122110251\NguyenTrungTuan_2122110251\bin\PagedList.dll
+C:\asp\NguyenTrungTuan_2122110251\NguyenTrungTuan_2122110251\bin\PagedList.Mvc.dll
+C:\asp\NguyenTrungTuan_2122110251\NguyenTrungTuan_2122110251\bin\PagedList.xml
+C:\asp\NguyenTrungTuan_2122110251\NguyenTrungTuan_2122110251\bin\PagedList.Mvc.xml

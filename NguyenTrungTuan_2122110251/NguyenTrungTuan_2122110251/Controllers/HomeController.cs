@@ -1,32 +1,31 @@
 ﻿using NguyenTrungTuan_2122110251.Context;
+using NguyenTrungTuan_2122110251.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Web;
 using System.Web.Mvc;
-using System.Security.Cryptography;
-using NguyenTrungTuan_2122110251.Models;
 
 namespace NguyenTrungTuan_2122110251.Controllers
 {
     public class HomeController : Controller
     {
-        QLSPEntities objcsdlspEntities =new QLSPEntities();
+        WebASPEntities db = new WebASPEntities();
         public ActionResult Index()
         {
             HomeModel objHomeModel = new HomeModel();
-            objHomeModel.ListCategory = objcsdlspEntities.Categories.ToList();
-            objHomeModel.ListProduct= objcsdlspEntities.Products.ToList();
+
+            objHomeModel.ListProducts = db.Products.ToList();
+            objHomeModel.ListCategories = db.Categories.ToList();
+
             return View(objHomeModel);
         }
         public ActionResult Content()
         {
             return View();
         }
-        public ActionResult Component()
-        {
-            return View();
-        }
+
         [HttpGet]
         public ActionResult Register()
         {
@@ -39,13 +38,14 @@ namespace NguyenTrungTuan_2122110251.Controllers
         {
             if (ModelState.IsValid)
             {
-                var check = objcsdlspEntities.Users.FirstOrDefault(s => s.Email == _user.Email);
+                var check = db.Users.FirstOrDefault(s => s.Email == _user.Email);
                 if (check == null)
                 {
+                    _user.IsAdmin = false;
                     _user.Password = GetMD5(_user.Password);
-                    objcsdlspEntities.Configuration.ValidateOnSaveEnabled = false;
-                    objcsdlspEntities.Users.Add(_user);
-                    objcsdlspEntities.SaveChanges();
+                    db.Configuration.ValidateOnSaveEnabled = false;
+                    db.Users.Add(_user);
+                    db.SaveChanges();
                     return RedirectToAction("Index");
                 }
                 else
@@ -56,6 +56,64 @@ namespace NguyenTrungTuan_2122110251.Controllers
             }
             return View("Index");
         }
+
+        [HttpGet]
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Login(string email, string password, bool rememberMe = false)
+        {
+            if (ModelState.IsValid)
+            {
+                var f_password = GetMD5(password);
+                var data = db.Users.Where(s => s.Email.Equals(email) && s.Password.Equals(f_password)).ToList();
+                if (data.Count() > 0)
+                {
+                    // Lưu session
+                    Session["FullName"] = data.FirstOrDefault().FirstName + " " + data.FirstOrDefault().LastName;
+                    Session["Email"] = data.FirstOrDefault().Email;
+                    Session["idUser"] = data.FirstOrDefault().Id;
+
+                    // Lưu cookie nếu chọn ghi nhớ
+                    if (rememberMe)
+                    {
+                        HttpCookie cookie = new HttpCookie("UserLogin");
+                        cookie.Values["Email"] = email;
+                        cookie.Values["Password"] = f_password;
+                        cookie.Expires = DateTime.Now.AddDays(7); // Cookie tồn tại 7 ngày
+                        Response.Cookies.Add(cookie);
+                    }
+
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.error = "Email hoặc mật khẩu không chính xác!";
+                    return View();
+                }
+            }
+            return View();
+        }
+
+        public ActionResult Logout()
+        {
+            Session.Clear();
+
+            // Xóa cookie
+            if (Request.Cookies["UserLogin"] != null)
+            {
+                HttpCookie cookie = new HttpCookie("UserLogin");
+                cookie.Expires = DateTime.Now.AddDays(-1); // Hết hạn ngay lập tức
+                Response.Cookies.Add(cookie);
+            }
+
+            return RedirectToAction("Login");
+        }
+
         public static string GetMD5(string str)
         {
             MD5 md5 = new MD5CryptoServiceProvider();
@@ -67,6 +125,28 @@ namespace NguyenTrungTuan_2122110251.Controllers
                 byte2String += targetData[i].ToString("x2");
             }
             return byte2String;
+        }
+
+        // Logic tự động đăng nhập bằng cookie
+        protected override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            if (Session["idUser"] == null && Request.Cookies["UserLogin"] != null)
+            {
+                HttpCookie cookie = Request.Cookies["UserLogin"];
+                string email = cookie.Values["Email"];
+                string password = cookie.Values["Password"];
+
+                // Kiểm tra dữ liệu trong cơ sở dữ liệu
+                var data = db.Users.Where(s => s.Email.Equals(email) && s.Password.Equals(password)).ToList();
+                if (data.Count() > 0)
+                {
+                    // Tự động đăng nhập
+                    Session["FullName"] = data.FirstOrDefault().FirstName + " " + data.FirstOrDefault().LastName;
+                    Session["Email"] = data.FirstOrDefault().Email;
+                    Session["idUser"] = data.FirstOrDefault().Id;
+                }
+            }
+            base.OnActionExecuting(filterContext);
         }
     }
 }

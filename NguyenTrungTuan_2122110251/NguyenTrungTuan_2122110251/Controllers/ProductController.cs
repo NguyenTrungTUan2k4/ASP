@@ -9,12 +9,11 @@ namespace NguyenTrungTuan_2122110251.Controllers
 {
     public class ProductController : Controller
     {
+        WebASPEntities db = new WebASPEntities();
         // GET: Product
-        QLSPEntities objcsdlspEntities = new QLSPEntities();
-
         public ActionResult Detail(int Id)
         {
-            var objProduct=objcsdlspEntities.Products.Where(n=>n.Id==Id).FirstOrDefault();
+            var objProduct = db.Products.Where(n => n.Id == Id).FirstOrDefault();
             return View(objProduct);
         }
         public ActionResult ListingGrid()
@@ -25,6 +24,5 @@ namespace NguyenTrungTuan_2122110251.Controllers
         {
             return View();
         }
-
     }
 }

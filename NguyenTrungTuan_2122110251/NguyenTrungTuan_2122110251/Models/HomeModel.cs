@@ -8,8 +8,7 @@ namespace NguyenTrungTuan_2122110251.Models
 {
     public class HomeModel
     {
-        public List<Product> ListProduct { get; set; }
-        public List<Category> ListCategory { get; set; }
-
+        public List<Product> ListProducts { get; set; }
+        public List<Category> ListCategories { get; set; }
     }
 }

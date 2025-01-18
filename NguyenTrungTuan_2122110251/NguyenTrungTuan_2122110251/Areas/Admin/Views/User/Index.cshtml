@@ -1,0 +1,126 @@
+﻿@model IEnumerable<NguyenTrungTuan_2122110251.Context.User>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    /* General table styling */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+        font-size: 15px;
+        text-align: left;
+        background-color: #ffffff;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    th {
+        background-color: #007bff;
+        color: white;
+        padding: 12px;
+        text-align: center;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    td {
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+        text-align: center;
+        color: #555;
+    }
+
+    /* Row striping */
+    tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+    tr:hover {
+        background-color: #f1f1f1;
+        cursor: pointer;
+    }
+
+    /* Action buttons styling */
+    a {
+        color: #007bff;
+        text-decoration: none;
+        font-weight: 500;
+        padding: 6px 10px;
+        border: 1px solid #007bff;
+        border-radius: 4px;
+        transition: all 0.3s ease-in-out;
+    }
+
+        a:hover {
+            background-color: #007bff;
+            color: white;
+        }
+
+    /* Title styling */
+    h2 {
+        font-size: 22px;
+        color: #333;
+        margin-bottom: 20px;
+        font-weight: 600;
+    }
+
+    /* Create button styling */
+    p > a {
+        color: white;
+        background-color: #007bff;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 4px;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 500;
+        transition: background-color 0.3s ease-in-out;
+    }
+
+        p > a:hover {
+            background-color: #0056b3;
+        }
+</style>
+
+
+<h2>Quản lý Người dùng</h2>
+
+<p>
+    @Html.ActionLink("Tạo mới", "Create", null, new { @class = "btn btn-primary" })
+</p>
+
+<table>
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.FirstOrDefault().FirstName)</th>
+            <th>@Html.DisplayNameFor(model => model.FirstOrDefault().LastName)</th>
+            <th>@Html.DisplayNameFor(model => model.FirstOrDefault().Email)</th>
+            <th>@Html.DisplayNameFor(model => model.FirstOrDefault().Password)</th>
+            <th>@Html.DisplayNameFor(model => model.FirstOrDefault().IsAdmin)</th>
+            <th>Hành động</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.FirstName)</td>
+                <td>@Html.DisplayFor(modelItem => item.LastName)</td>
+                <td>@Html.DisplayFor(modelItem => item.Email)</td>
+                <td>@Html.DisplayFor(modelItem => item.Password)</td>
+                <td>@Html.DisplayFor(modelItem => item.IsAdmin)</td>
+                <td>
+                    @Html.ActionLink("Chỉnh sửa", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Xóa", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

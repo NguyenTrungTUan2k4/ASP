@@ -9,7 +9,7 @@ namespace NguyenTrungTuan_2122110251.Areas.Admin.Controllers
     public class HomeController : Controller
     {
         // GET: Admin/Home
-        public ActionResult Index()
+        public ActionResult AdminIndex()
         {
             return View();
         }
